@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bold Frame | Graphic Design Company</title>
+    <style>
+        /* ബ്ലാക്ക് ആൻഡ് വൈറ്റ് തീം റീസെറ്റ് */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        /* പശ്ചാത്തലത്തിലെ സ്മൂത്ത് മോഷൻ ഇഫക്റ്റ് */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: moveBackground 25s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(360deg); }
+        }
+
+        /* ഹെഡർ ഭാഗം */
+        header {
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid #222222;
+        }
+
+        .logo-area {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: #888888;
+            letter-spacing: 2px;
+        }
+
+        /* പ്രധാന ഉള്ളടക്കം */
+        main {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cccccc;
+            margin-bottom: 40px;
+        }
+
+        /* സവിശേഷതകൾ (Features) */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-box {
+            padding: 30px;
+            border: 1px solid #222222;
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.4s ease;
+        }
+
+        /* മൗസ് വെക്കുമ്പോൾ മാറുന്ന ഇഫക്റ്റ് */
+        .feature-box:hover {
+            background: #ffffff;
+            color: #000000;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-box h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        /* ഫൂട്ടറും കോൺടാക്റ്റും */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #222222;
+            background: #050505;
+        }
+
+        .contact-info {
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            color: #888888;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .email-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .email-link:hover {
+            color: #888888;
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: #444444;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">Bold Frame</div>
+        <div class="tagline">Visualizing Excellence</div>
+    </header>
+
+    <main>
+        <section class="about-section">
+            <h2>Who We Are</h2>
+            <p>2026-ൽ തുടക്കം കുറിച്ച ഒരു പ്രമുഖ ഗ്രാഫിക് ഡിസൈൻ കമ്പനിയാണ് ബോൾഡ് ഫ്രെയിം. അത്യാധുനികവും ആകർഷകവുമായ വിഷ്വൽ ഡിസൈനുകളിലൂടെ നിങ്ങളുടെ ആശയങ്ങൾക്ക് ഞങ്ങൾ ജീവൻ നൽകുന്നു. ലോഗോ ഡിസൈൻ, ബ്രാൻഡിംഗ്, ഡിജിറ്റൽ ആർട്ട് തുടങ്ങി വിട്ടുവീഴ്ചയില്ലാത്ത ക്രിയേറ്റിവിറ്റിയാണ് ഞങ്ങളുടെ സവിശേഷത.</p>
+        </section>
+
+        <section class="features">
+            <div class="feature-box">
+                <h3>Bold Designs</h3>
+                <p>തനതായ ശൈലിയിലുള്ള സൃഷ്ടികൾ.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Modern Art</h3>
+                <p>പുതുതലമുറ ട്രെൻഡുകൾക്കൊപ്പം.</p>
+            </div>
+            <div class="feature-box">
+                <h3>2026 Legacy</h3>
+                <p>തുടക്കം മുതൽ ഇന്നുവരെ കൃത്യതയോടെ.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="contact-info">
+            <p>കണക്ട് ചെയ്യാൻ താത്പര്യമുണ്ടോ? ഞങ്ങൾക്ക് മെയിൽ ചെയ്യൂ:</p>
+            <a href="mailto:bold.frame.at@gmail.com" class="email-link">bold.frame.at@gmail.com</a>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Bold Frame. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
