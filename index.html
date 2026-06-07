@@ -3,407 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bold Frame | Poster Design & Videography</title>
+    <title>Bold Frame - Poster Design & Videography</title>
     <style>
-        /* --- ഗ്ലോബൽ സ്റ്റൈലുകൾ --- */
+        /* Base Styling */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: #0a0a0c;
+            background-color: #0a0a0a;
             color: #ffffff;
+            min-height: 100vh;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
         }
 
-        /* --- ബാക്ക്ഗ്രൗണ്ടിലെ ലൈറ്റ് മൂവ്‌മെന്റ് എഫക്റ്റ് --- */
-        .bg-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 0, 128, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(0, 212, 255, 0.15) 0%, transparent 40%);
-            z-index: -2;
-            pointer-events: none;
-            animation: pulseGlow 10s ease-in-out infinite alternate;
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.2); opacity: 1; }
-        }
-
-        /* --- ബാക്ക്ഗ്രൗണ്ടിൽ കറങ്ങുന്ന ഒബ്ജക്റ്റ് --- */
-        .rotating-object {
-            position: fixed;
-            top: 40%;
-            right: -100px;
-            width: 300px;
-            height: 300px;
-            border: 2px dashed rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            z-index: -1;
-            animation: spin 25s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-
-        /* --- നാവിഗേഷൻ മെനു --- */
-        header {
+        /* Liquid Glass Background */
+        .glass-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 20px 50px;
+            height: 100%;
+            z-index: -1;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+
+        .liquid-blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            filter: blur(140px);
+            animation: floatLiquid 18s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes floatLiquid {
+            0% { transform: translate(-10%, -10%) scale(1); }
+            50% { transform: translate(60vw, 30vh) scale(1.2); }
+            100% { transform: translate(10vw, 70vh) scale(0.8); }
+        }
+
+        .glass-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            pointer-events: none;
+        }
+
+        /* Header & Premium Menu */
+        header {
+            position: relative;
+            z-index: 10;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 12, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 35px 8%;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
         }
 
-        nav a {
-            color: #a0a0a5;
-            text-decoration: none;
-            margin-left: 30px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        /* ക്ലിക്ക് ചെയ്യുമ്പോഴും ഹോവർ ചെയ്യുമ്പോഴും ഉള്ള ഗ്ലോ എഫക്റ്റ് */
-        nav a:hover, nav a.active {
-            color: #fff;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-        }
-
-        /* --- സെക്ഷൻ പൊതുവായ സ്റ്റൈൽ --- */
-        section {
-            min-height: 100vh;
-            padding: 120px 10% 80px 10%;
+        nav ul {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            list-style: none;
+            gap: 15px;
         }
 
-        /* --- സ്ക്രോൾ ചെയ്യുമ്പോൾ പൊങ്ങി വരുന്ന അനിമേഷൻ (Scroll Reveal) --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease;
+        nav ul li a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            padding: 12px 25px;
+            border-radius: 40px;
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        nav ul li a:hover {
+            color: #000;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
         }
 
-        /* --- ഹോം പേജ് (Hero Section) --- */
-        #home {
-            text-align: center;
+        /* Split Screen Hero Section */
+        main {
+            position: relative;
+            z-index: 5;
+            padding: 0 8%;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
             align-items: center;
+            gap: 40px;
+            flex-grow: 1;
+            margin-top: 2vh;
         }
 
-        #home h1 {
-            font-size: 65px;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #fff, #a0a0a5);
+        .hero-text {
+            text-align: left;
+        }
+
+        .hero-text h1 {
+            font-size: 5.5rem;
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 0.95;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, #ffffff 30%, #444444 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* തുടക്കത്തിലുള്ള മാസ്സ് സൂം ഇൻ എഫക്റ്റ് */
-            animation: zoomInMain 1.5s ease forward; 
         }
 
-        @keyframes zoomInMain {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        #home p {
-            font-size: 20px;
-            color: #888;
-            max-width: 600px;
+        .hero-text p {
+            font-size: 1.1rem;
+            color: #aaa;
+            max-width: 550px;
             margin-bottom: 40px;
+            line-height: 1.6;
         }
 
-        .btn {
-            padding: 12px 35px;
+        /* Premium CTA Button */
+        .cta-btn {
+            padding: 16px 45px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .cta-btn:hover {
             background: #fff;
             color: #000;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: tyranny 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
         }
 
-        /* ബട്ടൺ ഗ്ലോ എഫക്റ്റ് */
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
-        }
-
-        /* --- എബൗട്ട് പേജ് --- */
-        .about-container {
+        /* Visual Media Frame (Gimbal Photo Section)
+           നിങ്ങൾ പറഞ്ഞ ഗിംബൽ പിടിച്ച ഫോട്ടോ വരുന്നത് ഇവിടെയാണ്!
+        */
+        .hero-image-container {
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 50px;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-text h2 {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-
-        .about-img {
-            flex: 1;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: transform 0.5s ease;
-        }
-
-        /* ഫോട്ടോയ്ക്ക് മുകളിലൂടെ മൗസ് കൊണ്ടുപോകുമ്പോൾ സൂം ഇൻ എഫക്റ്റ് */
-        .about-img:hover {
-            transform: scale(1.03);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: grayscale(30%);
-            transition: filter 0.5s ease;
-        }
-
-        .about-img:hover img {
-            filter: grayscale(0%);
-        }
-
-        /* --- ഗാലറി പേജ് --- */
-        #gallery h2 {
-            font-size: 40px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .gallery-item {
             position: relative;
-            border-radius: 12px;
+        }
+
+        .image-frame {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            height: 500px;
+            border-radius: 24px;
             overflow: hidden;
-            aspect-ratio: 16/11;
-            background: #151518;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            cursor: pointer;
-            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            /* ഗിംബൽ അനങ്ങുന്നത് പോലുള്ള സ്മൂത്ത് ആനിമേഷൻ */
+            animation: gimbalFloat 6s infinite ease-in-out; 
+            background: #111;
         }
 
-        /* ഗാലറി കാർഡുകൾക്ക് സൂം + ഗ്ലോ എഫക്റ്റ് */
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 0, 128, 0.4);
-            z-index: 2;
+        /* ഫോട്ടോയിൽ ലിക്വിഡ് ഗ്ലാസ് റിഫ്ലെക്ഷൻ വരാൻ */
+        .image-frame::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
+            pointer-events: none;
         }
 
-        .gallery-item img {
+        .image-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            /* ഫോട്ടോ കറുപ്പും വെളുപ്പും (Premium Black & White) ആകാൻ */
+            filter: grayscale(100%) contrast(110%); 
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
+        /* മൗസ് വെക്കുമ്പോൾ ഫോട്ടോ പതിയെ സൂം ആകും */
+        .image-frame:hover img {
+            transform: scale(1.08);
         }
 
-        /* --- കോൺടാക്ട് / എൻക്വയറി ഫോം --- */
-        #contact {
+        /* Gimbal Floating Animation */
+        @keyframes gimbalFloat {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(1.5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Footer Section with Contact Info */
+        footer {
+            position: relative;
+            z-index: 10;
+            padding: 35px 8%;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            justify-content: space-between;
             align-items: center;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(15px);
         }
 
-        #contact h2 {
-            font-size: 40px;
-            margin-bottom: 30px;
+        .contact-info {
+            display: flex;
+            gap: 50px;
         }
 
-        .enquiry-form {
-            width: 100%;
-            max-width: 600px;
-            background: rgba(20, 20, 25, 0.6);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        .contact-box p {
+            font-size: 0.8rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            background: #0d0d11;
-            border: 1px solid rgba(255,255,255,0.1);
+        .contact-box a {
             color: #fff;
-            border-radius: 8px;
-            outline: none;
-            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
         }
 
-        /* ഇൻപുട്ട് ഫീൽഡുകളിൽ ക്ലിക്ക് ചെയ്യുമ്പോൾ ഗ്ലോ എഫക്റ്റ് */
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: #fff;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        .contact-box a:hover {
+            color: #888;
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: #fff;
-            color: #000;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .footer-logo {
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            opacity: 0.3;
         }
 
-        .submit-btn:hover {
-            box-shadow: 0 0 20px rgba(255,255,255,0.5);
-            transform: translateY(-2px);
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            main { grid-template-columns: 1fr; text-align: center; margin: 40px 0; }
+            .hero-text { display: flex; flex-direction: column; align-items: center; }
+            .hero-text h1 { font-size: 3.8rem; }
+            .image-frame { height: 400px; }
+            footer { flex-direction: column; gap: 25px; text-align: center; }
+            .contact-info { flex-direction: column; gap: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-glow"></div>
-    <div class="rotating-object"></div>
+    <div class="glass-bg">
+        <div class="liquid-blob"></div>
+    </div>
+    <div class="glass-overlay"></div>
 
     <header>
-        <div class="logo">BOLD FRAME</div>
+        <div class="logo">Bold Frame</div>
         <nav>
-            <a href="#home" class="nav-link active">Home</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#gallery" class="nav-link">Gallery</a>
-            <a href="#contact" class="nav-link">Enquiry</a>
+            <ul>
+                <li><a href="#posters">Posters</a></li>
+                <li><a href="#cinema">Films</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </nav>
     </header>
 
-    <section id="home">
-        <h1>We Frame Your Bold Ideas</h1>
-        <p>Premium Poster Designing & Professional Videography services tailored to make your brand stand out from the crowd.</p>
-        <a href="#contact" class="btn">Get In Touch</a>
-    </section>
+    <main>
+        <div class="hero-text">
+            <h1>Bold Frame</h1>
+            <p>We craft high-end poster designs and cinematic videography for brands that dare to look premium. Powered by liquid motion and bold shapes.</p>
+            <button class="cta-btn" id="exploreBtn">View Portfolio</button>
+        </div>
 
-    <section id="about" class="reveal">
-        <div class="about-container">
-            <div class="about-text">
-                <h2>Who We Are</h2>
-                <p>Welcome to Bold Frame. We are a creative team specializing in high-impact poster designing and cinematic videography. Whether it's a stunning visual poster or an engaging video production, we bring your concepts to life with cutting-edge motion and details.</p>
-            </div>
-            <div class="about-img">
-                <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=600&auto=format&fit=crop" alt="Videography Camera">
+        <div class="hero-image-container">
+            <div class="image-frame">
+                <img src="https://images.unsplash.com/photo-1619551483861-f3b392500057?auto=format&fit=crop&q=80&w=600" alt="Videographer with Gimbal">
             </div>
         </div>
-    </section>
+    </main>
 
-    <section id="gallery" class="reveal">
-        <h2>Our Works</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500&auto=format&fit=crop" alt="Design 1">
+    <footer>
+        <div class="contact-info">
+            <div class="contact-box">
+                <p>Collaborate</p>
+                <a href="mailto:create@boldframe.com">create@boldframe.com</a>
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=500&auto=format&fit=crop" alt="Video Shoot">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=500&auto=format&fit=crop" alt="Design 2">
+            <div class="contact-box">
+                <p>Call Us</p>
+                <a href="tel:+919876543210">+91 98765 43210</a>
             </div>
         </div>
-    </section>
-
-    <section id="contact" class="reveal">
-        <h2>Let's Create Something Big</h2>
-        <form class="enquiry-form" action="https://formspree.io/f/YOUR_FORMSPREEE_ID" method="POST">
-            <div class="form-group">
-                <input type="text" name="name" placeholder="Your Name" required>
-            </div>
-            <div class="form-group">
-                <input type="email" name="email" placeholder="Your Email" required>
-            </div>
-            <div class="form-group">
-                <textarea name="message" rows="5" placeholder="Tell us about your project (Poster / Video)..." required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Enquiry</button>
-        </form>
-    </section>
+        <div class="footer-logo">© 2026 BOLD FRAME STUDIO.</div>
+    </footer>
 
     <script>
-        // 1. സ്ക്രോൾ ചെയ്യുമ്പോൾ സെക്ഷനുകൾ പൊങ്ങി വരുന്ന എഫക്റ്റ് (Scroll Reveal)
-        window.addEventListener('scroll', () => {
-            const reveals = document.querySelectorAll('.reveal');
+        const blob = document.querySelector('.liquid-blob');
+        
+        // ബാക്ക്ഗ്രൗണ്ടിലെ ലിക്വിഡ് ഗ്ലാസ് മൂവ്മെന്റ്
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
             
-            reveals.forEach(reveal => {
-                const windowHeight = window.innerHeight;
-                const elementTop = reveal.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    reveal.classList.add('active');
-                } else {
-                    reveal.classList.remove('active'); // വീണ്ടും അനിമേഷൻ വേണമെങ്കിൽ
-                }
-            });
+            blob.style.left = (x - 300) + 'px';
+            blob.style.top = (y - 300) + 'px';
+        });
 
-            // 2. സ്ക്രോൾ ചെയ്യുമ്പോൾ മെനു ലിങ്കുകൾ തനിയെ ആക്റ്റീവ് ആകാൻ
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            let current = '';
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 150) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
+        // ബട്ടൺ ഇന്ററാക്ഷൻ
+        document.getElementById('exploreBtn').addEventListener('click', () => {
+            blob.style.transform = 'scale(1.8)';
+            blob.style.background = 'rgba(255, 255, 255, 0.25)';
+            setTimeout(() => {
+                blob.style.transform = 'scale(1)';
+                blob.style.background = 'rgba(255, 255, 255, 0.12)';
+            }, 1000);
         });
     </script>
 </body>
