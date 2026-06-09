@@ -3,347 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bold Frame - Poster Design & Videography</title>
+    <title>DELUXE | Premium Event Management</title>
     <style>
-        /* Base Styling */
+        /* --- Reset & Base Styles --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Cinzel', 'Didot', 'Playfair Display', serif;
+        }
+
+        :root {
+            --bg-dark: #0a0202;
+            --burgundy: #2d0b0e;
+            --crimson: #800020;
+            --gold-bright: #ffdf7a;
+            --gold-premium: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            --gold-text: #e5c158;
         }
 
         body {
-            background-color: #0a0a0a;
-            color: #ffffff;
-            min-height: 100vh;
+            background-color: var(--bg-dark);
+            color: #fff;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(128, 0, 32, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(170, 119, 28, 0.08) 0%, transparent 40%);
         }
 
-        /* Liquid Glass Background */
-        .glass-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: #0a0a0a;
-            overflow: hidden;
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #aa771c;
+            border-radius: 4px;
         }
 
-        .liquid-blob {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 50%;
-            filter: blur(140px);
-            animation: floatLiquid 18s infinite alternate ease-in-out;
-            pointer-events: none;
-        }
-
-        @keyframes floatLiquid {
-            0% { transform: translate(-10%, -10%) scale(1); }
-            50% { transform: translate(60vw, 30vh) scale(1.2); }
-            100% { transform: translate(10vw, 70vh) scale(0.8); }
-        }
-
-        .glass-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            pointer-events: none;
-        }
-
-        /* Header & Premium Menu */
+        /* --- Header / Navigation --- */
         header {
-            position: relative;
-            z-index: 10;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 35px 8%;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(10, 2, 2, 0.8), transparent);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(187, 149, 63, 0.1);
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            text-transform: uppercase;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 6px;
+            background: var(--gold-premium);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(251, 245, 183, 0.3);
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 15px;
-        }
-
-        nav ul li a {
-            color: #888;
+        nav a {
+            color: #fff;
             text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 1px;
+            margin-left: 35px;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            position: relative;
-            padding: 12px 25px;
-            border-radius: 40px;
+            transition: 0.3s ease;
         }
 
-        nav ul li a:hover {
-            color: #000;
-            background: rgba(255, 255, 255, 1);
-            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.25);
-            transform: scale(1.05);
+        nav a:hover {
+            color: var(--gold-text);
+            text-shadow: 0 0 10px rgba(229, 193, 88, 0.6);
         }
 
-        /* Split Screen Hero Section */
-        main {
-            position: relative;
-            z-index: 5;
-            padding: 0 8%;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 40px;
-            flex-grow: 1;
-            margin-top: 2vh;
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
         }
 
-        .hero-text {
-            text-align: left;
+        /* Premium Light Blur Effect */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--crimson);
+            filter: blur(150px);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulseLight 8s infinite alternate ease-in-out;
         }
 
-        .hero-text h1 {
-            font-size: 5.5rem;
-            font-weight: 900;
-            letter-spacing: -3px;
-            line-height: 0.95;
-            margin-bottom: 25px;
+        .hero h1 {
+            font-size: 6rem;
+            letter-spacing: 15px;
+            margin-bottom: 20px;
+            background: var(--gold-premium);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            color: #d4af37;
             text-transform: uppercase;
-            background: linear-gradient(180deg, #ffffff 30%, #444444 100%);
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.8;
+            animation: fadeInUp 1.8s ease-out;
+        }
+
+        /* --- Premium CTA Button --- */
+        .cta-btn {
+            position: relative;
+            padding: 15px 40px;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+            background: transparent;
+            border: 1px solid #bf953f;
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.5s ease;
+            box-shadow: 0 0 15px rgba(191, 149, 63, 0.2);
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(252, 246, 186, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        .cta-btn:hover {
+            box-shadow: 0 0 25px rgba(252, 246, 186, 0.6);
+            background: var(--crimson);
+            border-color: transparent;
+        }
+
+        /* --- Services Section --- */
+        .services {
+            padding: 100px 10%;
+            background: linear-gradient(to bottom, transparent, var(--burgundy), transparent);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            letter-spacing: 8px;
+            margin-bottom: 60px;
+            background: var(--gold-premium);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-text p {
-            font-size: 1.1rem;
-            color: #aaa;
-            max-width: 550px;
-            margin-bottom: 40px;
-            line-height: 1.6;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
 
-        /* Premium CTA Button */
-        .cta-btn {
-            padding: 16px 45px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .cta-btn:hover {
-            background: #fff;
-            color: #000;
-            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.2);
-            transform: translateY(-4px);
-        }
-
-        /* Visual Media Frame (Gimbal Photo Section)
-           നിങ്ങൾ പറഞ്ഞ ഗിംബൽ പിടിച്ച ഫോട്ടോ വരുന്നത് ഇവിടെയാണ്!
-        */
-        .hero-image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* Liquid Glass / Premium Card Effect */
+        .card {
+            background: rgba(15, 4, 5, 0.6);
+            border: 1px solid rgba(191, 149, 63, 0.15);
+            padding: 40px;
+            border-radius: 4px;
+            text-align: center;
             position: relative;
-        }
-
-        .image-frame {
-            position: relative;
-            width: 100%;
-            max-width: 380px;
-            height: 500px;
-            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-            /* ഗിംബൽ അനങ്ങുന്നത് പോലുള്ള സ്മൂത്ത് ആനിമേഷൻ */
-            animation: gimbalFloat 6s infinite ease-in-out; 
-            background: #111;
         }
 
-        /* ഫോട്ടോയിൽ ലിക്വിഡ് ഗ്ലാസ് റിഫ്ലെക്ഷൻ വരാൻ */
-        .image-frame::after {
+        .card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
-            pointer-events: none;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(252, 246, 186, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
         }
 
-        .image-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* ഫോട്ടോ കറുപ്പും വെളുപ്പും (Premium Black & White) ആകാൻ */
-            filter: grayscale(100%) contrast(110%); 
-            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(252, 246, 186, 0.6);
+            box-shadow: 0 15px 35px rgba(128, 0, 32, 0.4), 0 0 15px rgba(191, 149, 63, 0.2);
         }
 
-        /* മൗസ് വെക്കുമ്പോൾ ഫോട്ടോ പതിയെ സൂം ആകും */
-        .image-frame:hover img {
-            transform: scale(1.08);
+        .card:hover::before {
+            opacity: 1;
         }
 
-        /* Gimbal Floating Animation */
-        @keyframes gimbalFloat {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(1.5deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
+        .card h3 {
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            color: var(--gold-text);
         }
 
-        /* Footer Section with Contact Info */
-        footer {
-            position: relative;
-            z-index: 10;
-            padding: 35px 8%;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(10, 10, 10, 0.7);
-            backdrop-filter: blur(15px);
+        .card p {
+            font-size: 0.95rem;
+            color: #cccccc;
+            line-height: 1.6;
+            font-family: sans-serif; /* Cleaner body text match */
+            letter-spacing: 0.5px;
         }
 
-        .contact-info {
-            display: flex;
-            gap: 50px;
+        /* --- Animations --- */
+        @keyframes pulseLight {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.6; }
+            100% { transform: scale(1.2) translate(20px, 20px); opacity: 0.9; }
         }
 
-        .contact-box p {
-            font-size: 0.8rem;
-            color: #555;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
-        .contact-box a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-
-        .contact-box a:hover {
-            color: #888;
-        }
-
-        .footer-logo {
-            font-weight: 800;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            opacity: 0.3;
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
         /* Responsive Design */
-        @media (max-width: 992px) {
-            main { grid-template-columns: 1fr; text-align: center; margin: 40px 0; }
-            .hero-text { display: flex; flex-direction: column; align-items: center; }
-            .hero-text h1 { font-size: 3.8rem; }
-            .image-frame { height: 400px; }
-            footer { flex-direction: column; gap: 25px; text-align: center; }
-            .contact-info { flex-direction: column; gap: 20px; }
+        @media (max-width: 768px) {
+            header { padding: 20px 5%; }
+            nav { display: none; } /* Simplified for template focus */
+            .hero h1 { font-size: 3.5rem; letter-spacing: 8px; }
+            .hero p { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="glass-bg">
-        <div class="liquid-blob"></div>
-    </div>
-    <div class="glass-overlay"></div>
-
+    <!-- Header Navigation -->
     <header>
-        <div class="logo">Bold Frame</div>
+        <div class="logo">DELUXE</div>
         <nav>
-            <ul>
-                <li><a href="#posters">Posters</a></li>
-                <li><a href="#cinema">Films</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#galery">Experience</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
 
-    <main>
-        <div class="hero-text">
-            <h1>Bold Frame</h1>
-            <p>We craft high-end poster designs and cinematic videography for brands that dare to look premium. Powered by liquid motion and bold shapes.</p>
-            <button class="cta-btn" id="exploreBtn">View Portfolio</button>
-        </div>
+    <!-- Hero Showcase Section -->
+    <section class="hero" id="home">
+        <h1>DELUXE</h1>
+        <p>Curating Extraordinary Bespoke Experiences</p>
+        <button class="cta-btn">Inquire Now</button>
+    </section>
 
-        <div class="hero-image-container">
-            <div class="image-frame">
-                <img src="https://images.unsplash.com/photo-1619551483861-f3b392500057?auto=format&fit=crop&q=80&w=600" alt="Videographer with Gimbal">
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="contact-info">
-            <div class="contact-box">
-                <p>Collaborate</p>
-                <a href="mailto:create@boldframe.com">create@boldframe.com</a>
-            </div>
-            <div class="contact-box">
-                <p>Call Us</p>
-                <a href="tel:+919876543210">+91 98765 43210</a>
-            </div>
-        </div>
-        <div class="footer-logo">© 2026 BOLD FRAME STUDIO.</div>
-    </footer>
-
-    <script>
-        const blob = document.querySelector('.liquid-blob');
-        
-        // ബാക്ക്ഗ്രൗണ്ടിലെ ലിക്വിഡ് ഗ്ലാസ് മൂവ്മെന്റ്
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
+    <!-- Services / Concept Section -->
+    <section class="services" id="services">
+        <h2 class="section-title">The Masterpieces</h2>
+        <div class="grid">
             
-            blob.style.left = (x - 300) + 'px';
-            blob.style.top = (y - 300) + 'px';
-        });
+            <div class="card">
+                <h3>Gala & Soirées</h3>
+                <p>High-society gatherings, curated with meticulous detail, elite aesthetics, and flawless execution.</p>
+            </div>
 
-        // ബട്ടൺ ഇന്ററാക്ഷൻ
-        document.getElementById('exploreBtn').addEventListener('click', () => {
-            blob.style.transform = 'scale(1.8)';
-            blob.style.background = 'rgba(255, 255, 255, 0.25)';
-            setTimeout(() => {
-                blob.style.transform = 'scale(1)';
-                blob.style.background = 'rgba(255, 255, 255, 0.12)';
-            }, 1000);
-        });
-    </script>
+            <div class="card">
+                <h3>Corporate Luxury</h3>
+                <p>Immersive brand activations and high-profile corporate summits designed to leave a legacy.</p>
+            </div>
+
+            <div class="card">
+                <h3>Private Elite</h3>
+                <p>Exquisite celebrations, weddings, and secret dynamic experiences tailored for VIP clientele.</p>
+            </div>
+
+        </div>
+    </section>
+
 </body>
 </html>
